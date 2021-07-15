@@ -7,6 +7,10 @@ const locations = require("./locations.json");
 const app = express();
 app.use(formidableMiddleware());
 
+app.get("/", (req, res) => {
+  res.send("Hello, welcome to Fasterize tool !");
+});
+
 app.post("/verify", async (req, res) => {
   if (req.fields.url) {
     try {
