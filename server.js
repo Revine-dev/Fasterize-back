@@ -7,11 +7,7 @@ const locations = require("./locations.json");
 const app = express();
 app.use(formidableMiddleware());
 
-app.get("/", (req, res) => {
-  res.send("Hello, welcome to Fasterize tool !");
-});
-
-app.post("/verify", async (req, res) => {
+app.post("/", async (req, res) => {
   if (req.fields.url) {
     try {
       const response = await axios.get(req.fields.url);
