@@ -73,4 +73,8 @@ app.post("/", async (req, res) => {
   }
 });
 
+app.all("*", async (req, res) => {
+  res.status(404).send("Welcome to Fasterize, you're on the default page.");
+});
+
 module.exports = app;

@@ -1,7 +1,12 @@
 const app = require("./server");
 const request = require("supertest");
 
-describe("Route is working", () => {
+describe("Route are working", () => {
+  it("should return 404 while getting main page", async () => {
+    const response = await request(app).get("/");
+    expect(response.status).toEqual(404);
+  });
+
   it("should work and return 400 without params", async () => {
     const response = await request(app).post("/");
     expect(response.status).toEqual(400);
