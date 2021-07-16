@@ -3,9 +3,25 @@ const formidableMiddleware = require("express-formidable");
 const axios = require("axios");
 const fsCodes = require("./code.json");
 const locations = require("./locations.json");
+const cors = require("cors");
+
+const allowedDomains = ["http://localhost:3000"];
 
 const app = express();
 app.use(formidableMiddleware());
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+
+      if (allowedDomains.indexOf(origin) === -1) {
+        return callback(new Error("Access Forbidden"), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
 
 app.post("/", async (req, res) => {
   if (req.fields.url) {
