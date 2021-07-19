@@ -3,7 +3,7 @@
   "w,p": "Optimisation en cours",
   "f,p": "Front/forward, proxy",
   "Z,p": "Page non optimisable",
-  "m": "method (HEAD, PROPFIND, OPTIONS, PUT, DELETE, etc)",
+  "m": "Method (HEAD, PROPFIND, OPTIONS, PUT, DELETE, etc)",
   "eec": "Exclusion via la config du moteur",
   "stc": "Status code de l'origine différent de 200",
   "ab": "Exclusion par un test",

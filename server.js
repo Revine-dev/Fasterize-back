@@ -43,7 +43,7 @@ app.post("/", async (req, res) => {
 
       const decodedCodes = response.headers["x-fstrz"]
         .split(",")
-        .map((code) => fsCodes[code].toLowerCase());
+        .map((code) => fsCodes[code]);
 
       let location;
       try {
