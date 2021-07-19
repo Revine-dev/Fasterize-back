@@ -5,7 +5,10 @@ const fsCodes = require("./code.json");
 const locations = require("./locations.json");
 const cors = require("cors");
 
-const allowedDomains = ["http://localhost:3000"];
+const allowedDomains = [
+  "http://localhost:3000",
+  "https://fasterize-c6c670.netlify.app/",
+];
 
 const app = express();
 app.use(formidableMiddleware());
