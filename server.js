@@ -15,8 +15,10 @@ app.use(formidableMiddleware());
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
+    origin: (origin, callback) => {
+      if (!origin) {
+        return callback(null, true);
+      }
 
       if (allowedDomains.indexOf(origin) === -1) {
         return callback(new Error("Access Forbidden"), false);
@@ -46,7 +48,9 @@ app.post("/", async (req, res) => {
 
       const decodedCodes = response.headers["x-fstrz"]
         .split(",")
-        .map((code) => fsCodes[code]);
+        .map((code) =>
+          fsCodes[code] ? fsCodes[code] : `Code ${code} non reconnu`
+        );
 
       let location;
       try {
@@ -69,7 +73,7 @@ app.post("/", async (req, res) => {
         plugged: true,
         statusCode: response.status,
         fstrzFlags: decodedCodes,
-        cloudfrontStatus: (response.headers["x-cache"].match(/Miss/)
+        cloudfrontStatus: (response.headers["x-cache"].match(/miss/i)
           ? "miss"
           : "hit"
         ).toLocaleUpperCase(),
