@@ -6,8 +6,8 @@ const locations = require("./locations.json");
 const cors = require("cors");
 
 const allowedDomains = [
-  "https://fasterize-c6c670.netlify.app",
   "http://localhost:3000",
+  "https://fasterize-c6c670.netlify.app",
 ];
 
 const app = express();
@@ -15,12 +15,13 @@ app.use(formidableMiddleware());
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (allowedDomains.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Deny by CORS"));
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+
+      if (allowedDomains.indexOf(origin) === -1) {
+        return callback(new Error("Access Forbidden"), false);
       }
+      return callback(null, true);
     },
   })
 );
