@@ -44,11 +44,11 @@ describe("Route are working", () => {
       .post("/")
       .send({ url: "https://www.fasterize.com/fr/" });
     expect(response.statusCode).toEqual(200);
-    expect(response.body?.statusCode).toBeTruthy();
-    expect(response.body?.statusCode).toEqual(200);
-    expect(response.body?.fstrzFlags).toContain("optimisée");
-    expect(response.body?.fstrzFlags).toContain("cachée");
-    expect(response.body?.cloudfrontStatus).toEqual("MISS");
-    expect(response.body?.cloudfrontPOP).toEqual("Paris");
+    expect(response.body.statusCode).toBeTruthy();
+    expect(response.body.statusCode).toEqual(200);
+    expect(response.body.fstrzFlags).toContain("Optimisée");
+    expect(response.body.fstrzFlags).toContain("Cachée");
+    expect(response.body.cloudfrontStatus).toEqual("MISS");
+    expect(response.body.cloudfrontPOP).toEqual("Paris");
   });
 });
